@@ -1,0 +1,25 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<configuration>
+	<system.webServer>
+		<rewrite>
+			<rules>
+				<rule name="Index Request" enabled="true" stopProcessing="true">
+					<match url="^$" />
+					<action type="Redirect" url="http://todo.varelacastelo.com/index.html" logRewrittenUrl="true" />
+				</rule>
+				<rule name="Todo Request" enabled="true" stopProcessing="true">
+					<match url="todo" />
+					<action type="Redirect" url="http://todo.varelacastelo.com/index.html" logRewrittenUrl="true" />
+				</rule>
+			</rules>
+		</rewrite>
+	</system.webServer>
+	<location path="." inheritInChildApplications="false">
+		<system.webServer>
+			<handlers>
+				<add name="aspNetCore" path="*" verb="*" modules="AspNetCoreModuleV2" resourceType="Unspecified" />
+			</handlers>
+			<aspNetCore processPath="dotnet" arguments=".\ToDoApiSWS.dll" stdoutLogEnabled="false" stdoutLogFile=".\logs\stdout" hostingModel="inprocess" />
+		</system.webServer>
+	</location>
+</configuration>
